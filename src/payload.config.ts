@@ -4,7 +4,7 @@ import Examples from './collections/Examples';
 import Users from './collections/Users';
 
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_URL,
+  serverURL: process.env.PAYLOAD_URL || 'http://localhost:3000',
   admin: {
     user: Users.slug,
   },
