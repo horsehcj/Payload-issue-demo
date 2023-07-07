@@ -7,7 +7,10 @@ const Examples: CollectionConfig = {
     useAsTitle: 'someField',
   },
   access: {
+    create: () => true,
     read: () => true,
+    update: () => true,
+    admin: () => true,
   },
   fields: [
     {
