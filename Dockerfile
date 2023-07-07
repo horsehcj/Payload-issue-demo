@@ -1,27 +1,32 @@
-FROM node:18.8-alpine as base
+ARG NODE_VERSION=18
 
-FROM base as builder
+# Setup the build container.
+FROM node:${NODE_VERSION}-alpine AS build
 
 WORKDIR /home/node
+
+# Install dependencies.
 COPY package*.json .
 
 RUN yarn install
-COPY . .
+
+# Copy the source files.
 COPY src src
 COPY tsconfig.json .
+
+# Build the application.
 RUN yarn build && yarn cache clean
 
-FROM base as runtime
-
-ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+# Setup the runtime container.
+FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /home/node
-COPY package*.json  ./
 
-RUN yarn install --production
+# Copy the built application.
 COPY --from=build /home/node /home/node
 
+# Expose the service's port.
 EXPOSE 3000
 
-CMD ["node", "dist/server.js"]
+# Run the service.
+CMD ["yarn", "run", "serve"]

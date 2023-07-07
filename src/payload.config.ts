@@ -8,6 +8,9 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
+  rateLimit: {
+    trustProxy: true,
+  },
   collections: [
     Users,
     // Add Collections here
