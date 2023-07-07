@@ -6,6 +6,9 @@ const Examples: CollectionConfig = {
   admin: {
     useAsTitle: 'someField',
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'someField',
