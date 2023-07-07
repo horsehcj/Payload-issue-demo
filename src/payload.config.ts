@@ -1,10 +1,13 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
 import Examples from './collections/Examples';
+import Cities from './collections/Cities';
 import Users from './collections/Users';
 
+import { localizationSettings } from "./plugins/localization";
+
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_URL,
+  serverURL: process.env.PAYLOAD_URL || 'http://localhost:3000',
   admin: {
     user: Users.slug,
   },
@@ -15,7 +18,9 @@ export default buildConfig({
     Users,
     // Add Collections here
     Examples,
+    Cities,
   ],
+  localization: localizationSettings,
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

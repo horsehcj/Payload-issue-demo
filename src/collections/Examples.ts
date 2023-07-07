@@ -11,6 +11,23 @@ const Examples: CollectionConfig = {
       name: 'someField',
       type: 'text',
     },
+    {
+      name: "arrayField",
+      label: "Array Field",
+      type: "array",
+      minRows: 1,
+      required: true,
+      localized: true,
+      fields: [
+        {
+          type: "relationship",
+          name: "city",
+          label: "City",
+          relationTo: "cities",
+          required: true,
+        },
+      ],
+    },
   ],
 }
 
