@@ -34,6 +34,13 @@ const Examples: CollectionConfig = {
         },
       ],
     },
+    {
+      name: "relationshipField",
+      label: "Relationship Field",
+      type: "relationship",
+      relationTo: "cities",
+      hasMany: true,
+    },
   ],
 }
 
